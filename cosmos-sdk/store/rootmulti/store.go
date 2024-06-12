@@ -209,6 +209,11 @@ func (rs *Store) loadVersion(ver int64, upgrades *types.StoreUpgrades) error {
 	if ver != 0 {
 		var err error
 		cInfo, err = rs.GetCommitInfo(ver)
+		for _, storeInfo := range cInfo.StoreInfos {
+			fmt.Printf("store: %s, hash: %x \n", &storeInfo.Name, storeInfo.CommitId.Hash)
+		}
+
+		panic("done logging commit infos")
 		if err != nil {
 			return err
 		}
